@@ -7,10 +7,17 @@ const pool = require('../database');
 
 router.post('/new', async function (req, res){
     const {id, valor, tipo, cuenta} =  req.body;
-    
-    await pool.query('INSERT INTO transaccion values(?, ?, NOW(), ?, ?)', [id, valor, tipo, cuenta]);
-    console.log('Se inserto correctamente la cuenta');
-    res.send('Se inserto correctamente la cuenta');
+    try{
+
+        console.log(id, valor, tipo, cuenta);
+        await pool.query('INSERT INTO transaccion values(?, ?, NOW(), ?, ?)', [id, valor, tipo, cuenta]);
+        console.log('Se inserto correctamente la cuenta');
+        res.send('Se inserto correctamente la transacción');
+
+    }catch (err){
+        res.send(err);
+    }
+
 });
 
 
