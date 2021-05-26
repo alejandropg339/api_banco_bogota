@@ -26,10 +26,12 @@ router.post('/new-count', async function (req, res){
 
 router.get('/accounts', async (req, res) => {
     const accounts = await pool.query('SELECT * FROM cuenta');
+    const listAccounts = [];
     accounts.forEach(account =>{
         console.log(account);
-        res.send(account);
+        listAccounts.push(account);
     });
+    res.send(listAccounts);
 });
 
 

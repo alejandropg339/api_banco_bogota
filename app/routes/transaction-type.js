@@ -20,11 +20,12 @@ router.post('/add', async (req, res) => {
 
 router.get('/transactions', async (req, res) => {
     const transactions = await pool.query('SELECT * FROM tipo_transaccion');
+    listTransactionsType = [];
     transactions.forEach(transaction =>{
         console.log(transaction);
-        res.send(transaction);
+        listTransactionsType.push(transaction);
     });
-    
+    res.send(listTransactionsType);
 });
 
 // -------------- UPDATE TRANSACTIONS ---------------

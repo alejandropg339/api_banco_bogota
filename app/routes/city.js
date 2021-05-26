@@ -20,10 +20,12 @@ router.post('/add-city', async (req, res) => {
 
 router.get('/citys', async (req, res) => {
     const citys = await pool.query('SELECT * FROM ciudad');
+    const listCitys =[];
     citys.forEach(city =>{
         console.log(city);
-        res.send(city);
+        listCitys.push(city);
     });
+    await res.send(listCitys);
     
 });
 

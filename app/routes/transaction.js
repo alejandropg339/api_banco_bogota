@@ -25,10 +25,12 @@ router.post('/new', async function (req, res){
 
 router.get('/transactions', async (req, res) => {
     const transactions = await pool.query('SELECT * FROM transaccion');
+    const listTransactions =[];
     transactions.forEach(transaction =>{
         console.log(transaction);
-        res.send(transaction);
+        listTransactions.push(transaction);
     });
+    await res.send(listTransactions);
 });
 
 
